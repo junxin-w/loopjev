@@ -1,0 +1,32 @@
+{
+  "family": "ouro",
+  "model": "models/Ouro-1.4B",
+  "loops": 4,
+  "supervision": "uniform",
+  "approved_for_full_training": true,
+  "seed": 0,
+  "deterministic": true,
+  "epochs": 1,
+  "batch_records": 16,
+  "candidate_batch": 16,
+  "padded_token_budget": 32768,
+  "record_microbatch": 4,
+  "microbatch_token_budget": 32768,
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "lora_targets": [
+    "q_proj",
+    "v_proj"
+  ],
+  "gradient_checkpointing": true,
+  "lora_lr": 0.0002,
+  "head_lr": 0.001,
+  "brier_weight": 0.1,
+  "gradient_clip": 1,
+  "warmup_ratio": 0.03,
+  "log_every": 25,
+  "checkpoint_every": 100,
+  "keep_checkpoints": 3,
+  "input_protocol": "noul-dual-v1",
+  "experiment_id": "loopjev_noul_dual_v1_uniform_loop4_seed0"
+}

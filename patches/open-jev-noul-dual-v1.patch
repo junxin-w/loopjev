@@ -1,0 +1,20 @@
+--- a/jev/api.py
++++ b/jev/api.py
+@@ -78,11 +78,14 @@
+ def candidate_prompts(record: dict) -> list[str]:
+     """Render independent candidates using only declared model input fields."""
+     prefix = f"Context:\n{_render(record['state'])}\n\nQuestion: {_render(record['question'])}\n"
++    options = record["options"]
+     if record["kind"] == "noul":
+-        return [prefix + "Is the answer to this question yes? Answer Yes or No."]
+-    # Candidate order, question IDs, adjacent score levels and targets are absent.
++        if options != ["no", "yes"]:
++            raise ValueError("NOUL target order must remain [no, yes]")
++        options = ["No", "Yes"]  # Display casing only; targets are unchanged.
++    # Each candidate is independent; labels and other candidates are absent.
+     return [prefix + f"Proposed answer: {_render(option)}\nIs this proposed answer correct? Answer Yes or No."
+-            for option in record["options"]]
++            for option in options]
+ 
+ 
+ def format_response(records: Sequence[dict], probabilities: Sequence[Sequence[float]]) -> dict:

@@ -1,0 +1,213 @@
+--- baseline/experiments/src/loopjev/runtime.py
++++ noul-dual-v1/experiments/src/loopjev/runtime.py
+@@ -12,6 +12,8 @@
+ 
+ def load_config(path):
+     config = json.loads((ROOT / path).read_text())
++    from loopjev.input_protocol import validate_config
++    validate_config(config)
+     if config['family'] not in ('ouro', 'qwen3') or config['supervision'] not in ('uniform', 'last', 'single'):
+         raise ValueError('Unsupported model/supervision')
+     if config['family'] == 'qwen3' and (config['loops'] != 1 or config['supervision'] != 'single'):
+--- baseline/experiments/src/loopjev/models/decision.py
++++ noul-dual-v1/experiments/src/loopjev/models/decision.py
+@@ -24,6 +24,15 @@
+ class DecisionModel(torch.nn.Module):
+     def __init__(self, config, lock, checkpoint=None):
+         super().__init__()
++        from loopjev.input_protocol import validate_config, validate_lock, validate_checkpoint_manifest
++        validate_config(config)
++        validate_lock(lock)
++        if checkpoint is not None:
++            import json
++            manifest = json.loads((Path(checkpoint) / 'manifest.json').read_text())
++            validate_checkpoint_manifest(manifest, lock)
++            if manifest['config'] != config:
++                raise ValueError('Checkpoint configuration differs from requested model')
+         self.settings = config
+         self.data_lock = lock
+         self.family = config['family']
+--- baseline/experiments/src/loopjev/training/checkpoints.py
++++ noul-dual-v1/experiments/src/loopjev/training/checkpoints.py
+@@ -49,6 +49,8 @@
+ def verify_checkpoint(path, lock):
+     content = (path / 'manifest.json').read_bytes()
+     manifest = json.loads(content)
++    from loopjev.input_protocol import validate_checkpoint_manifest
++    validate_checkpoint_manifest(manifest, lock)
+     protocol = manifest['protocol']
+     if protocol['data_lock_sha256'] != digest(ROOT / protocol['data_lock']):
+         raise ValueError('Checkpoint data lock changed')
+--- baseline/experiments/src/loopjev/training/tasks.py
++++ noul-dual-v1/experiments/src/loopjev/training/tasks.py
+@@ -4,11 +4,9 @@
+ def class_logits(candidate_scores, kind):
+     if candidate_scores.ndim != 2:
+         raise ValueError('Expected candidate-by-loop scores')
+-    if kind == 'noul':
+-        if candidate_scores.shape[0] != 1:
+-            raise ValueError('Noul must have one encoded input')
+-        return torch.stack((torch.zeros_like(candidate_scores[0]), candidate_scores[0]), dim=-1)
+-    if kind not in ('choice', 'score') or candidate_scores.shape[0] < 2:
++    if kind == 'noul' and candidate_scores.shape[0] != 2:
++        raise ValueError('Dual-input NOUL requires [No, Yes] candidate scores')
++    if kind not in ('choice', 'score', 'noul') or candidate_scores.shape[0] < 2:
+         raise ValueError('Invalid task/candidate count')
+     return candidate_scores.transpose(0, 1)
+ 
+--- baseline/experiments/src/loopjev/training/engine.py
++++ noul-dual-v1/experiments/src/loopjev/training/engine.py
+@@ -35,6 +35,8 @@
+ 
+ 
+ def train(args):
++    from loopjev.input_protocol import validate_output
++    validate_output(ROOT / args.output, load_config(args.config))
+     with TensorBoardRun(ROOT / args.output / 'tensorboard') as tracking, StopRequest() as stop:
+         _train(args, tracking, stop)
+ 
+@@ -64,6 +66,7 @@
+             raise FileExistsError('Use a new output condition')
+         output.mkdir(parents=True)
+         protocol = {'smoke_only': args.smoke, 'smoke_updates': args.smoke_updates, 'smoke_per_kind': args.smoke_per_kind, 'config_path': args.config,
++            'input_protocol': config['input_protocol'], 'experiment_id': config['experiment_id'],
+             'data_lock': args.data_lock, 'data_lock_sha256': digest(ROOT / args.data_lock),
+             'dataset_revision': lock['dataset_revision'], 'sources_sha256': source_hashes(),
+             'model_files_sha256': model_provenance(config),
+@@ -180,6 +183,7 @@
+     evaluation = save_evaluation(model, validation, encoder, output / 'validation')
+     tracking.evaluation(evaluation, 'validation', total_updates)
+     write_json(output / 'metrics.json', {'status': 'SMOKE ONLY' if args.smoke else 'completed development training',
++        'input_protocol': config['input_protocol'], 'experiment_id': config['experiment_id'],
+         'optimizer_fused': optimizer.defaults['fused'],
+         'updates': total_updates, 'training': stats, 'peak_allocated_bytes': torch.cuda.max_memory_allocated(),
+         'adapter_parameters': sum(value.numel() for value in adapters), 'head_parameters': sum(value.numel() for value in model.head.parameters()),
+--- baseline/experiments/src/loopjev/evaluation/engine.py
++++ noul-dual-v1/experiments/src/loopjev/evaluation/engine.py
+@@ -66,6 +66,9 @@
+ 
+ 
+ def save_evaluation(model, records, encoder, output, temperatures=None):
++    from loopjev.input_protocol import identity, validate_output
++    validate_output(output, model.settings)
++    run_identity = identity(model.settings)
+     validate_temperatures(temperatures, model.loops, {row['kind'] for row in records})
+     predictions, cost = predict(model, records, encoder)
+     loops = {}
+@@ -77,8 +80,8 @@
+     with gzip.open(output / 'predictions.jsonl.gz', 'wt', encoding='utf-8') as stream:
+         for row, logits in zip(records, predictions, strict=True):
+             stream.write(json.dumps({key: row[key] for key in ('id', 'group_id', 'kind', 'source', 'target')} | {
+-                'score_values': row['metadata'].get('score_values'), 'logits_by_loop': logits.tolist()}, ensure_ascii=False, allow_nan=False) + '\n')
+-    report = {'loops': loops, 'cost': cost, 'temperature_status': 'explicit frozen temperature file' if temperatures else 'unavailable; no temperature fitted',
++                **run_identity, 'score_values': row['metadata'].get('score_values'), 'logits_by_loop': logits.tolist()}, ensure_ascii=False, allow_nan=False) + '\n')
++    report = {**run_identity, 'loops': loops, 'cost': cost, 'temperature_status': 'explicit frozen temperature file' if temperatures else 'unavailable; no temperature fitted',
+         'evaluation_role': 'development', 'macro_definition': 'equal observed task types; source_task_macro gives equal weight to each observed source-task cell'}
+     write_json(output / 'metrics.json', report)
+     return report
+@@ -98,6 +101,8 @@
+     # here and never reread through the mutable latest link after inference.
+     with checkpoint_reader(ROOT / args.checkpoint, lock) as checkpoint:
+         manifest = checkpoint.manifest
++        from loopjev.input_protocol import validate_output
++        validate_output(output, manifest['config'])
+         configure_runtime(manifest['config'])
+         if args.temperature_file:
+             temperature_path = ROOT / args.temperature_file
+@@ -112,7 +117,8 @@
+         if completed is None:
+             completed = torch.load(checkpoint.path / 'training.pt', map_location='cpu', weights_only=True)['completed_updates']
+     encoder = RecordEncoder(model.tokenizer, model.family, lock)
+-    protocol = {'checkpoint_sha256': checkpoint.sha256,
++    protocol = {'input_protocol': model.settings['input_protocol'], 'experiment_id': model.settings['experiment_id'],
++        'checkpoint_sha256': checkpoint.sha256,
+         'checkpoint_directory': str(checkpoint.path.relative_to(ROOT)), 'completed_updates': completed,
+         'role': args.role, 'smoke_only': args.smoke or manifest['protocol']['smoke_only'],
+         'data_lock_sha256': digest(ROOT / args.data_lock), 'sources_sha256': source_hashes(),
+--- baseline/experiments/src/loopjev/data/records.py
++++ noul-dual-v1/experiments/src/loopjev/data/records.py
+@@ -34,6 +34,8 @@
+ def load_lock(path='experiments/protocols/data.json'):
+     path = ROOT / path
+     lock = json.loads(path.read_text())
++    from loopjev.input_protocol import validate_lock
++    validate_lock(lock)
+     if not lock['frozen']:
+         raise ValueError('Data protocol has not been approved')
+     return lock
+@@ -124,6 +126,8 @@
+ 
+ class RecordEncoder:
+     def __init__(self, tokenizer, family, lock):
++        from loopjev.input_protocol import validate_lock
++        validate_lock(lock)
+         self.tokenizer = tokenizer
+         self.family = family
+         self.limit = lock['max_input_tokens']
+@@ -136,7 +140,7 @@
+         prompts, counts = [], []
+         for row in records:
+             members = self.render(row)
+-            expected = 1 if row['kind'] == 'noul' else len(row['options'])
++            expected = len(row['options'])
+             if len(members) != expected:
+                 raise ValueError(f'Encoding count violation at {row["id"]}')
+             if self.family == 'ouro':
+--- baseline/experiments/src/loopjev/data/audit.py
++++ noul-dual-v1/experiments/src/loopjev/data/audit.py
+@@ -59,7 +59,7 @@
+             'sources': dict(sorted(Counter(row['source'] for row in selected).items())),
+             'soft_records': sum(not all(value in (0, 1) for value in row['target']) for row in selected),
+             'output_classes': summarize([len(row['options']) for row in selected]),
+-            'encoded_inputs': sum(1 if kind == 'noul' else len(row['options']) for row in selected),
++            'encoded_inputs': sum(len(row['options']) for row in selected),
+             'records_per_group': dict(sorted(Counter(counts.values()).items()))}
+     return {'records': len(records), 'groups': len(groups), 'by_kind': by_kind,
+         'group_kind_signatures': dict(sorted(Counter('+'.join(sorted(kinds)) for kinds in groups.values()).items()))}
+--- baseline/experiments/protocols/data.json
++++ noul-dual-v1/experiments/protocols/data.json
+@@ -1,5 +1,5 @@
+ {
+-  "version": "main-data-v1",
++  "version": "main-data-v1-noul-dual-v1",
+   "frozen": true,
+   "dataset_revision": "10ad6888333fa97f8c948192797bad3de3040802",
+   "seed": 20261019,
+@@ -49,7 +49,7 @@
+       "models/Qwen3-1.7B-Base/tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+     }
+   },
+-  "renderer_sha256": "f22aa50c00d64aa91c2d415c1973f59bdaad11d1de51308ae5454326b8cbf350",
++  "renderer_sha256": "ed153d9a7c24c8226b74965d7524d7be343ae6fd525ad78a0574310c21936b1b",
+   "roles": {
+     "stage1": {
+       "records": 136974,
+@@ -71,5 +71,7 @@
+   "stage1_risk_train_overlap_groups": 8000,
+   "historical_fresh_required": false,
+   "near_deduplication": "sampled lexical diagnosis only; flagged Groups excluded from development roles",
+-  "allocation_protocol_sha256": "39c4a943a01903af4432ed7661f996a34588064607897fa627f1d4ab2557dbf0"
++  "allocation_protocol_sha256": "39c4a943a01903af4432ed7661f996a34588064607897fa627f1d4ab2557dbf0",
++  "input_protocol": "noul-dual-v1",
++  "parent_data_lock_sha256": "cc8c881680c833cf3312c33fb9da05fd2971554a47caafe7f587dc58df49cad6"
+ }
+--- baseline/repos/Open-Jev/jev/api.py
++++ noul-dual-v1/repos/Open-Jev/jev/api.py
+@@ -78,11 +78,14 @@
+ def candidate_prompts(record: dict) -> list[str]:
+     """Render independent candidates using only declared model input fields."""
+     prefix = f"Context:\n{_render(record['state'])}\n\nQuestion: {_render(record['question'])}\n"
++    options = record["options"]
+     if record["kind"] == "noul":
+-        return [prefix + "Is the answer to this question yes? Answer Yes or No."]
+-    # Candidate order, question IDs, adjacent score levels and targets are absent.
++        if options != ["no", "yes"]:
++            raise ValueError("NOUL target order must remain [no, yes]")
++        options = ["No", "Yes"]  # Display casing only; targets are unchanged.
++    # Each candidate is independent; labels and other candidates are absent.
+     return [prefix + f"Proposed answer: {_render(option)}\nIs this proposed answer correct? Answer Yes or No."
+-            for option in record["options"]]
++            for option in options]
+ 
+ 
+ def format_response(records: Sequence[dict], probabilities: Sequence[Sequence[float]]) -> dict:

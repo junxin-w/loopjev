@@ -1,0 +1,270 @@
+{
+  "scope": "Exact Stage-I source archive; manifests are versioned as byte-preserving gzip; models and datasets excluded",
+  "files": [
+    {
+      "path": ".envs/README.md",
+      "bytes": 893,
+      "sha256": "3ffff19362d58c300e96570c109ceb6a6a5da05fe1cd7373e6bef2ec40849bdb"
+    },
+    {
+      "path": ".envs/requirements-training.txt",
+      "bytes": 189,
+      "sha256": "fce84c8a797c530ead41fd4aa9c2916f6131e251db4e17f41e8353e37e2a31f0"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 341,
+      "sha256": "988f2a7da3e28c7f4ca7e438d94d3677dcef784ff830584716a8ede540402fea"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 507,
+      "sha256": "7cad902d340a9feaf26e172b65a0cff5ef752fbf62a9f1514d90683584da56f0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4953,
+      "sha256": "4fcccd60a34e9c61aec9c216d7b267bd8b8977f7e1a488ac289a31fb32f2a479"
+    },
+    {
+      "path": "docs/NOUL_PROTOCOL.md",
+      "bytes": 2522,
+      "sha256": "c6fbfd473a32338d30fd93c4a46d659feda68d362905d756daef4dcd1b49d5a2"
+    },
+    {
+      "path": "docs/SETUP.md",
+      "bytes": 2316,
+      "sha256": "62dcd163e0ddcf7422fb04ff37a38c2b0dfd561380157273569ee352cdb5e078"
+    },
+    {
+      "path": "experiments/configs/loopjev_noul_dual_v1_uniform_loop4_seed0.json",
+      "bytes": 733,
+      "sha256": "38777ec6d005dc38ffd5d15334a8b34361db166e5784f302e84c3bb543173e84"
+    },
+    {
+      "path": "experiments/manifests/main-v1/policy_fit.json.gz",
+      "bytes": 305868,
+      "sha256": "d0844031e239d7ed31786f430551dd2c2b8a7bcf2a080e3053f1e159ff7f180a"
+    },
+    {
+      "path": "experiments/manifests/main-v1/risk_train.json.gz",
+      "bytes": 1238916,
+      "sha256": "d5fd5308e4e018f2b9d69e1ad686ed5e16dc075b42783090dadda273c2f5db9a"
+    },
+    {
+      "path": "experiments/manifests/main-v1/risk_val.json.gz",
+      "bytes": 305481,
+      "sha256": "0d1220d1d615a6059b05bda8a5c64f1e3ffd692451c02a502e9dc76c1bd99037"
+    },
+    {
+      "path": "experiments/manifests/main-v1/stage1.json.gz",
+      "bytes": 8030711,
+      "sha256": "98500c7530bf1cbd9ea2186cea5ea1a5774a1537a72e17b52bd65cdeabf84157"
+    },
+    {
+      "path": "experiments/protocols/data.json",
+      "bytes": 3480,
+      "sha256": "9fc0466d565564d59c21f235aee5e838b1fe641d57f97149797762cbaef50d31"
+    },
+    {
+      "path": "experiments/run.py",
+      "bytes": 9181,
+      "sha256": "a709959742520976355a0b5d364035f84e5f79b834c6528ea6a1a0cd0c171add"
+    },
+    {
+      "path": "experiments/src/loopjev/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/data/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/data/allocation.py",
+      "bytes": 8889,
+      "sha256": "b6090d0a7f797bfabddba8260b022f5ac1a49bda69cb2266b0190a6fd3fbeec2"
+    },
+    {
+      "path": "experiments/src/loopjev/data/audit.py",
+      "bytes": 19990,
+      "sha256": "b1afb2b060e5a258cfaab27822a3e5e71720f3d96177feb8efe3afe92242024d"
+    },
+    {
+      "path": "experiments/src/loopjev/data/encoding_cache.py",
+      "bytes": 4586,
+      "sha256": "89bccd59a484ccb709c2d5ae8c8bc4c1fb48a74f8f3760a6399219cb851d0381"
+    },
+    {
+      "path": "experiments/src/loopjev/data/records.py",
+      "bytes": 6978,
+      "sha256": "f146a595098b9f4b4b9648d945eb58f27a8891f491ad0f1db4ad544f781ffc55"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/engine.py",
+      "bytes": 7591,
+      "sha256": "1cd787f83282e8c9c017326066eb143a7ac88a50b73754518cfdfc0ee30b9c03"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/metrics.py",
+      "bytes": 4733,
+      "sha256": "adc1ef17f730d06024de09d4309f35cdd6d2dc3cdcd647d3b04a9afb47df1f3b"
+    },
+    {
+      "path": "experiments/src/loopjev/input_protocol.py",
+      "bytes": 1786,
+      "sha256": "1d268f1657407ba4eda6cee5dc67b12fdbd01186d13afbfd95318fc8c86a4d8a"
+    },
+    {
+      "path": "experiments/src/loopjev/io.py",
+      "bytes": 465,
+      "sha256": "340199d5e56f6eb1b0faa844f8a8c9b00027928449eba7f6c3bb142980d1d88b"
+    },
+    {
+      "path": "experiments/src/loopjev/models/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/models/decision.py",
+      "bytes": 6795,
+      "sha256": "c4e803200b0ab2e97918902f8c4421769943f561cdfd274088f166454c1e63ae"
+    },
+    {
+      "path": "experiments/src/loopjev/paths.py",
+      "bytes": 70,
+      "sha256": "4739e9d781dee5fe306e28d34e2d703c4e07190530a1bdc86faeb7183c2f1d36"
+    },
+    {
+      "path": "experiments/src/loopjev/runtime.py",
+      "bytes": 2699,
+      "sha256": "eeebd9d5b86486aca6163af8922dd520a2be774bc87203ea60f9398848077eae"
+    },
+    {
+      "path": "experiments/src/loopjev/training/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/training/batching.py",
+      "bytes": 1132,
+      "sha256": "d9445ad46bda09e27d5490e728e447335f2683c3b8af2e6e0d00d5703aa00ab8"
+    },
+    {
+      "path": "experiments/src/loopjev/training/checkpoints.py",
+      "bytes": 4634,
+      "sha256": "bf5c8c5345721a48290cac731bd7da70348f68ed44d4e1f9130101545ec2f0de"
+    },
+    {
+      "path": "experiments/src/loopjev/training/engine.py",
+      "bytes": 13547,
+      "sha256": "9603843cb85286d15d590c18a9698d5d820088614916a278cdfa02f1d76e627f"
+    },
+    {
+      "path": "experiments/src/loopjev/training/performance.py",
+      "bytes": 15551,
+      "sha256": "ee978079782eefd04bd998a76846b9e2e129499b327ef3c809704a1aac0f5fa4"
+    },
+    {
+      "path": "experiments/src/loopjev/training/step.py",
+      "bytes": 1926,
+      "sha256": "e18b3f5364c49f4339d99a1981c9d78cf3362c56d4099316ddf398132fca0f83"
+    },
+    {
+      "path": "experiments/src/loopjev/training/stopping.py",
+      "bytes": 594,
+      "sha256": "282b3778f335e683ccc31f49df9c90702698bff3eac5d7b9e3bead9573986f38"
+    },
+    {
+      "path": "experiments/src/loopjev/training/tasks.py",
+      "bytes": 1432,
+      "sha256": "64460f71a1160903db422a8d28f520c6a677ef629fddba6c980f7b643327bc85"
+    },
+    {
+      "path": "experiments/src/loopjev/training/tracking.py",
+      "bytes": 3234,
+      "sha256": "41c21861f3fdd9e1e9167f92f5db6bed51e02ed8216cbe2fe4a09605e440e116"
+    },
+    {
+      "path": "patches/noul-dual-v1.patch",
+      "bytes": 11921,
+      "sha256": "1e81a7df8e8a29aee1c834f26adad05204ecdf60be33a1e5a079c0cc6be30f20"
+    },
+    {
+      "path": "patches/open-jev-noul-dual-v1.patch",
+      "bytes": 1083,
+      "sha256": "5bba494c02bf442e4ccd3b61cab32450ba0357625e8234efaf08fd0283a69288"
+    },
+    {
+      "path": "provenance/ARCHIVE_VERIFICATION.json",
+      "bytes": 589,
+      "sha256": "3b5c0abf9b5b51142b8e0535242c032c2d49a0b45bb7be45c5e735162004f70b"
+    },
+    {
+      "path": "provenance/CHECKPOINT_MANIFEST.json",
+      "bytes": 6071,
+      "sha256": "91a143970d4b20ef7d86d54258b656e754d8dcdaa64315da5b055e90e61c1e49"
+    },
+    {
+      "path": "provenance/CPU_VERIFICATION.json",
+      "bytes": 3266,
+      "sha256": "c205285f956b116e008b11ebd159a88f208229729a5b8d304a2e696f47ea7dd8"
+    },
+    {
+      "path": "provenance/IMPORT_STATUS.json",
+      "bytes": 736,
+      "sha256": "d50dc126a600f28c4210c1d09d5b73e0a00acdd4bf371c5cfe302d23b03948b0"
+    },
+    {
+      "path": "provenance/TRAINING_SOURCE_VERIFICATION.json",
+      "bytes": 6331,
+      "sha256": "8377a04e6afa8ac7da05826872e2f53986cd074c8b1e3e497d803948c212bb9f"
+    },
+    {
+      "path": "repos/Open-Jev/LICENSE",
+      "bytes": 1078,
+      "sha256": "ef2f6f6db605a2f611bc2d037c59276f615cdea76ac6e7551a28f71db890c9d2"
+    },
+    {
+      "path": "repos/Open-Jev/PROVENANCE.json",
+      "bytes": 1075,
+      "sha256": "08ba1d95041da79db59949f5632ee03e828c21e4d84c4711b3a02210750e9506"
+    },
+    {
+      "path": "repos/Open-Jev/jev/__init__.py",
+      "bytes": 64,
+      "sha256": "039d6c25d5ebea9724711756aff885f44d2226abbeea4abb99dfbc7b0b35ce7e"
+    },
+    {
+      "path": "repos/Open-Jev/jev/api.py",
+      "bytes": 6902,
+      "sha256": "ed153d9a7c24c8226b74965d7524d7be343ae6fd525ad78a0574310c21936b1b"
+    },
+    {
+      "path": "repos/Open-Jev/jev/metrics.py",
+      "bytes": 10161,
+      "sha256": "cb460c78b877a24708a0a8f8ca6b51f9602491f6ea24cd14e9a828c03d92f78b"
+    },
+    {
+      "path": "repos/README.md",
+      "bytes": 970,
+      "sha256": "42aeb65ca48dc2fd8c1e8fc888e3ff8b169a8ca190ab8b2c583996fca28e3027"
+    },
+    {
+      "path": "tools/restore_manifests.py",
+      "bytes": 1816,
+      "sha256": "36d3bc35f4650c168d45490ed173ff80e595358fe010e6728ade21bd52de3fe8"
+    },
+    {
+      "path": "tools/verify_sources.py",
+      "bytes": 4557,
+      "sha256": "1be88ba84cfa193db114ae1ee574c4a7f60d7766410975e53f0a1749b9973328"
+    }
+  ]
+}

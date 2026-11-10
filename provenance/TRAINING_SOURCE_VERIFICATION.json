@@ -1,0 +1,182 @@
+{
+  "input_protocol": "noul-dual-v1",
+  "checkpoint_manifest_sha256": "91a143970d4b20ef7d86d54258b656e754d8dcdaa64315da5b055e90e61c1e49",
+  "completed_updates_at_export": 1555,
+  "scheduled_updates": 8561,
+  "training_sources_checked": 25,
+  "actual_config_equals_checkpoint": true,
+  "data_lock_and_membership_hashes_verified": true,
+  "renderer_hash_verified": true,
+  "files": [
+    {
+      "path": "experiments/run.py",
+      "bytes": 9181,
+      "sha256": "a709959742520976355a0b5d364035f84e5f79b834c6528ea6a1a0cd0c171add"
+    },
+    {
+      "path": "experiments/src/loopjev/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/data/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/data/allocation.py",
+      "bytes": 8889,
+      "sha256": "b6090d0a7f797bfabddba8260b022f5ac1a49bda69cb2266b0190a6fd3fbeec2"
+    },
+    {
+      "path": "experiments/src/loopjev/data/audit.py",
+      "bytes": 19990,
+      "sha256": "b1afb2b060e5a258cfaab27822a3e5e71720f3d96177feb8efe3afe92242024d"
+    },
+    {
+      "path": "experiments/src/loopjev/data/encoding_cache.py",
+      "bytes": 4586,
+      "sha256": "89bccd59a484ccb709c2d5ae8c8bc4c1fb48a74f8f3760a6399219cb851d0381"
+    },
+    {
+      "path": "experiments/src/loopjev/data/records.py",
+      "bytes": 6978,
+      "sha256": "f146a595098b9f4b4b9648d945eb58f27a8891f491ad0f1db4ad544f781ffc55"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/engine.py",
+      "bytes": 7591,
+      "sha256": "1cd787f83282e8c9c017326066eb143a7ac88a50b73754518cfdfc0ee30b9c03"
+    },
+    {
+      "path": "experiments/src/loopjev/evaluation/metrics.py",
+      "bytes": 4733,
+      "sha256": "adc1ef17f730d06024de09d4309f35cdd6d2dc3cdcd647d3b04a9afb47df1f3b"
+    },
+    {
+      "path": "experiments/src/loopjev/input_protocol.py",
+      "bytes": 1786,
+      "sha256": "1d268f1657407ba4eda6cee5dc67b12fdbd01186d13afbfd95318fc8c86a4d8a"
+    },
+    {
+      "path": "experiments/src/loopjev/io.py",
+      "bytes": 465,
+      "sha256": "340199d5e56f6eb1b0faa844f8a8c9b00027928449eba7f6c3bb142980d1d88b"
+    },
+    {
+      "path": "experiments/src/loopjev/models/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/models/decision.py",
+      "bytes": 6795,
+      "sha256": "c4e803200b0ab2e97918902f8c4421769943f561cdfd274088f166454c1e63ae"
+    },
+    {
+      "path": "experiments/src/loopjev/paths.py",
+      "bytes": 70,
+      "sha256": "4739e9d781dee5fe306e28d34e2d703c4e07190530a1bdc86faeb7183c2f1d36"
+    },
+    {
+      "path": "experiments/src/loopjev/runtime.py",
+      "bytes": 2699,
+      "sha256": "eeebd9d5b86486aca6163af8922dd520a2be774bc87203ea60f9398848077eae"
+    },
+    {
+      "path": "experiments/src/loopjev/training/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/src/loopjev/training/batching.py",
+      "bytes": 1132,
+      "sha256": "d9445ad46bda09e27d5490e728e447335f2683c3b8af2e6e0d00d5703aa00ab8"
+    },
+    {
+      "path": "experiments/src/loopjev/training/checkpoints.py",
+      "bytes": 4634,
+      "sha256": "bf5c8c5345721a48290cac731bd7da70348f68ed44d4e1f9130101545ec2f0de"
+    },
+    {
+      "path": "experiments/src/loopjev/training/engine.py",
+      "bytes": 13547,
+      "sha256": "9603843cb85286d15d590c18a9698d5d820088614916a278cdfa02f1d76e627f"
+    },
+    {
+      "path": "experiments/src/loopjev/training/performance.py",
+      "bytes": 15551,
+      "sha256": "ee978079782eefd04bd998a76846b9e2e129499b327ef3c809704a1aac0f5fa4"
+    },
+    {
+      "path": "experiments/src/loopjev/training/step.py",
+      "bytes": 1926,
+      "sha256": "e18b3f5364c49f4339d99a1981c9d78cf3362c56d4099316ddf398132fca0f83"
+    },
+    {
+      "path": "experiments/src/loopjev/training/stopping.py",
+      "bytes": 594,
+      "sha256": "282b3778f335e683ccc31f49df9c90702698bff3eac5d7b9e3bead9573986f38"
+    },
+    {
+      "path": "experiments/src/loopjev/training/tasks.py",
+      "bytes": 1432,
+      "sha256": "64460f71a1160903db422a8d28f520c6a677ef629fddba6c980f7b643327bc85"
+    },
+    {
+      "path": "experiments/src/loopjev/training/tracking.py",
+      "bytes": 3234,
+      "sha256": "41c21861f3fdd9e1e9167f92f5db6bed51e02ed8216cbe2fe4a09605e440e116"
+    },
+    {
+      "path": "experiments/configs/loopjev_noul_dual_v1_uniform_loop4_seed0.json",
+      "bytes": 733,
+      "sha256": "38777ec6d005dc38ffd5d15334a8b34361db166e5784f302e84c3bb543173e84"
+    },
+    {
+      "path": "experiments/protocols/data.json",
+      "bytes": 3480,
+      "sha256": "9fc0466d565564d59c21f235aee5e838b1fe641d57f97149797762cbaef50d31"
+    },
+    {
+      "path": "repos/Open-Jev/jev/api.py",
+      "bytes": 6902,
+      "sha256": "ed153d9a7c24c8226b74965d7524d7be343ae6fd525ad78a0574310c21936b1b"
+    },
+    {
+      "path": "repos/Open-Jev/jev/__init__.py",
+      "bytes": 64,
+      "sha256": "039d6c25d5ebea9724711756aff885f44d2226abbeea4abb99dfbc7b0b35ce7e"
+    },
+    {
+      "path": "repos/Open-Jev/jev/metrics.py",
+      "bytes": 10161,
+      "sha256": "cb460c78b877a24708a0a8f8ca6b51f9602491f6ea24cd14e9a828c03d92f78b"
+    },
+    {
+      "path": "experiments/manifests/main-v1/stage1.json",
+      "bytes": 46081712,
+      "sha256": "83c3a0e16dcf80b2abb1d7af05d6f63f4a8fb9c88bb764e1d07e32c04bd0da3e"
+    },
+    {
+      "path": "experiments/manifests/main-v1/risk_train.json",
+      "bytes": 7061092,
+      "sha256": "ac684cf39b0238ade6d294f166dffc4d57470676937217b02776e7495c81b07f"
+    },
+    {
+      "path": "experiments/manifests/main-v1/risk_val.json",
+      "bytes": 1714420,
+      "sha256": "73dd1bc15331e72ae2eb23f5eab9b6ec988de31f9cbb6053a13a8fa1f84dacb7"
+    },
+    {
+      "path": "experiments/manifests/main-v1/policy_fit.json",
+      "bytes": 1716786,
+      "sha256": "398b54766a75f095b3a3c1884626b71afbc97b620eceda792f06bf0c01f50659"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Core versions recorded by the actual training checkpoint; not a complete environment lock.
+torch==2.8.0
+transformers==4.55.0
+peft==0.21.2
+numpy==2.5.4
+pyarrow==26.0.0
+tensorboard==2.21.0

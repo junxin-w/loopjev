@@ -1,0 +1,9 @@
+* text eol=lf
+# Historical evidence must retain its original bytes, including patch context.
+/patches/** -text -whitespace
+/provenance/CPU_VERIFICATION.json -text
+/provenance/CHECKPOINT_MANIFEST.json -text
+# Preserve the training source and frozen protocol fingerprints exactly.
+/experiments/** -text
+/repos/Open-Jev/jev/** -text
+*.gz -text

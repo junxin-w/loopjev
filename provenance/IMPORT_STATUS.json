@@ -1,0 +1,18 @@
+{
+  "snapshot_date": "2026-11-10",
+  "target_repository": "https://github.com/1simpleuser/loopjev",
+  "input_protocol": "noul-dual-v1",
+  "state": "source_archive_verified",
+  "runtime_imported": true,
+  "published": false,
+  "historical_evidence_only": false,
+  "missing_source_files": [],
+  "limitations": [
+    "Model weights, original datasets and training checkpoints are not included",
+    "Only checkpoint-recorded core package versions are archived; no full cross-platform environment rebuild was attempted",
+    "No GPU training, inference or full tokenizer audit was executed during source export"
+  ],
+  "blockers": [
+    "GitHub connector still returned repository-not-found; publication is pending repository access"
+  ]
+}

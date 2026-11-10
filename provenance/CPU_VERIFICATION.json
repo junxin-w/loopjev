@@ -1,0 +1,102 @@
+{
+  "input_protocol": "noul-dual-v1",
+  "functional_tests": 8,
+  "functional_passed": true,
+  "real_tokenizer_roundtrip": true,
+  "cache_roundtrip": true,
+  "new_cache_key_differs": true,
+  "old_cache_key": "bdc52f422c3f488493c8646b955edc9c360b764ec09cbcb83fea13c40624c29d",
+  "new_cache_key": "f397bffdde012a3cacfa4d72052b919769bbf2cfbb7ba7a47a222829d240bfdc",
+  "roles": {
+    "stage1": {
+      "records": 136974,
+      "groups": 52426
+    },
+    "risk_train": {
+      "records": 21009,
+      "groups": 8000
+    },
+    "risk_val": {
+      "records": 5079,
+      "groups": 2000
+    },
+    "policy_fit": {
+      "records": 5086,
+      "groups": 2000
+    }
+  },
+  "splits": {
+    "stage1": {
+      "records": 136974,
+      "by_kind": {
+        "choice": {
+          "records": 102694,
+          "encoded_inputs": 392437,
+          "tokens": null,
+          "max_input_tokens": null,
+          "legacy_encoded_inputs": 392437,
+          "audit_mode": "every prompt exactly equals baseline; baseline token lengths preserved"
+        },
+        "noul": {
+          "records": 23675,
+          "encoded_inputs": 47350,
+          "tokens": 30107262,
+          "max_input_tokens": 1531,
+          "legacy_encoded_inputs": 23675,
+          "audit_mode": "full retokenization with actual Ouro chat template"
+        },
+        "score": {
+          "records": 10605,
+          "encoded_inputs": 48615,
+          "tokens": null,
+          "max_input_tokens": null,
+          "legacy_encoded_inputs": 48615,
+          "audit_mode": "every prompt exactly equals baseline; baseline token lengths preserved"
+        }
+      },
+      "over_limit_records": 0,
+      "over_limit_examples": [],
+      "id_options_target_sha256": "d356a810d3deef1c7c8b755ae9cd0052aeb6d0c0363fa53f79148a318f9c064c",
+      "seconds": 33.403374107554555
+    },
+    "validation": {
+      "records": 25413,
+      "by_kind": {
+        "choice": {
+          "records": 11798,
+          "encoded_inputs": 56423,
+          "tokens": null,
+          "max_input_tokens": null,
+          "legacy_encoded_inputs": 56423,
+          "audit_mode": "every prompt exactly equals baseline; baseline token lengths preserved"
+        },
+        "noul": {
+          "records": 11133,
+          "encoded_inputs": 22266,
+          "tokens": 11636294,
+          "max_input_tokens": 1518,
+          "legacy_encoded_inputs": 11133,
+          "audit_mode": "full retokenization with actual Ouro chat template"
+        },
+        "score": {
+          "records": 2482,
+          "encoded_inputs": 10776,
+          "tokens": null,
+          "max_input_tokens": null,
+          "legacy_encoded_inputs": 10776,
+          "audit_mode": "every prompt exactly equals baseline; baseline token lengths preserved"
+        }
+      },
+      "over_limit_records": 0,
+      "over_limit_examples": [],
+      "id_options_target_sha256": "7f3183ab303b97b5a611caacafc83a3283f17760fc146fed9301f5e9cf9d38f9",
+      "seconds": 11.575129055418074
+    }
+  },
+  "gpu_used": false,
+  "training_started": false,
+  "baseline_sources_unchanged": true,
+  "max_input_tokens": 2048,
+  "length_audit_scope": "all changed NOUL inputs retokenized; all Choice/Score prompts verified byte-identical, same tokenizer/chat template",
+  "full_length_audit_passed": true
+}

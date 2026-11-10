@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/Zefan-Cai/Open-Jev",
+  "baseline_commit": "ac91fbbf4f4a3d0eb6da0b2aa5fdffcf1a1af65c",
+  "scope": "Only renderer dependency closure: three Python modules, not the upstream repository",
+  "changes": "Only jev/api.py differs; NOUL two independent candidate prompts",
+  "files": {
+    "jev/api.py": {
+      "baseline_sha256": "f22aa50c00d64aa91c2d415c1973f59bdaad11d1de51308ae5454326b8cbf350",
+      "actual_sha256": "ed153d9a7c24c8226b74965d7524d7be343ae6fd525ad78a0574310c21936b1b"
+    },
+    "jev/metrics.py": {
+      "baseline_sha256": "cb460c78b877a24708a0a8f8ca6b51f9602491f6ea24cd14e9a828c03d92f78b",
+      "actual_sha256": "cb460c78b877a24708a0a8f8ca6b51f9602491f6ea24cd14e9a828c03d92f78b"
+    },
+    "jev/__init__.py": {
+      "baseline_sha256": "039d6c25d5ebea9724711756aff885f44d2226abbeea4abb99dfbc7b0b35ce7e",
+      "actual_sha256": "039d6c25d5ebea9724711756aff885f44d2226abbeea4abb99dfbc7b0b35ce7e"
+    },
+    "LICENSE": {
+      "baseline_sha256": "ef2f6f6db605a2f611bc2d037c59276f615cdea76ac6e7551a28f71db890c9d2"
+    }
+  }
+}

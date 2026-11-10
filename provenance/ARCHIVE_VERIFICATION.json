@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "training_source_files": 25,
+  "configuration_matches_checkpoint": true,
+  "data_lock_and_memberships_verified": true,
+  "renderer_and_third_party_hashes_verified": true,
+  "noul_prompt_order_verified": true,
+  "targets_absent_from_prompts": true,
+  "legacy_config_rejected": true,
+  "stage1_counts": {
+    "choice": 102694,
+    "noul": 23675,
+    "score": 10605
+  },
+  "gpu_or_training_executed": false,
+  "scope": "Archive integrity and lightweight protocol checks only; historical 8 functional tests are recorded separately.",
+  "archive_date": "2026-11-10"
+}

@@ -1,0 +1,108 @@
+{
+  "config": {
+    "family": "ouro",
+    "model": "models/Ouro-1.4B",
+    "loops": 4,
+    "supervision": "uniform",
+    "approved_for_full_training": true,
+    "seed": 0,
+    "deterministic": true,
+    "epochs": 1,
+    "batch_records": 16,
+    "candidate_batch": 16,
+    "padded_token_budget": 32768,
+    "record_microbatch": 4,
+    "microbatch_token_budget": 32768,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_targets": [
+      "q_proj",
+      "v_proj"
+    ],
+    "gradient_checkpointing": true,
+    "lora_lr": 0.0002,
+    "head_lr": 0.001,
+    "brier_weight": 0.1,
+    "gradient_clip": 1,
+    "warmup_ratio": 0.03,
+    "log_every": 25,
+    "checkpoint_every": 100,
+    "keep_checkpoints": 3,
+    "input_protocol": "noul-dual-v1",
+    "experiment_id": "loopjev_noul_dual_v1_uniform_loop4_seed0"
+  },
+  "protocol": {
+    "smoke_only": false,
+    "smoke_updates": 1,
+    "smoke_per_kind": 1,
+    "config_path": "experiments/configs/loopjev_noul_dual_v1_uniform_loop4_seed0.json",
+    "input_protocol": "noul-dual-v1",
+    "experiment_id": "loopjev_noul_dual_v1_uniform_loop4_seed0",
+    "data_lock": "experiments/protocols/data.json",
+    "data_lock_sha256": "9fc0466d565564d59c21f235aee5e838b1fe641d57f97149797762cbaef50d31",
+    "dataset_revision": "10ad6888333fa97f8c948192797bad3de3040802",
+    "sources_sha256": {
+      "experiments/run.py": "a709959742520976355a0b5d364035f84e5f79b834c6528ea6a1a0cd0c171add",
+      "experiments/src/loopjev/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/src/loopjev/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/src/loopjev/data/allocation.py": "b6090d0a7f797bfabddba8260b022f5ac1a49bda69cb2266b0190a6fd3fbeec2",
+      "experiments/src/loopjev/data/audit.py": "b1afb2b060e5a258cfaab27822a3e5e71720f3d96177feb8efe3afe92242024d",
+      "experiments/src/loopjev/data/encoding_cache.py": "89bccd59a484ccb709c2d5ae8c8bc4c1fb48a74f8f3760a6399219cb851d0381",
+      "experiments/src/loopjev/data/records.py": "f146a595098b9f4b4b9648d945eb58f27a8891f491ad0f1db4ad544f781ffc55",
+      "experiments/src/loopjev/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/src/loopjev/evaluation/engine.py": "1cd787f83282e8c9c017326066eb143a7ac88a50b73754518cfdfc0ee30b9c03",
+      "experiments/src/loopjev/evaluation/metrics.py": "adc1ef17f730d06024de09d4309f35cdd6d2dc3cdcd647d3b04a9afb47df1f3b",
+      "experiments/src/loopjev/input_protocol.py": "1d268f1657407ba4eda6cee5dc67b12fdbd01186d13afbfd95318fc8c86a4d8a",
+      "experiments/src/loopjev/io.py": "340199d5e56f6eb1b0faa844f8a8c9b00027928449eba7f6c3bb142980d1d88b",
+      "experiments/src/loopjev/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/src/loopjev/models/decision.py": "c4e803200b0ab2e97918902f8c4421769943f561cdfd274088f166454c1e63ae",
+      "experiments/src/loopjev/paths.py": "4739e9d781dee5fe306e28d34e2d703c4e07190530a1bdc86faeb7183c2f1d36",
+      "experiments/src/loopjev/runtime.py": "eeebd9d5b86486aca6163af8922dd520a2be774bc87203ea60f9398848077eae",
+      "experiments/src/loopjev/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experiments/src/loopjev/training/batching.py": "d9445ad46bda09e27d5490e728e447335f2683c3b8af2e6e0d00d5703aa00ab8",
+      "experiments/src/loopjev/training/checkpoints.py": "bf5c8c5345721a48290cac731bd7da70348f68ed44d4e1f9130101545ec2f0de",
+      "experiments/src/loopjev/training/engine.py": "9603843cb85286d15d590c18a9698d5d820088614916a278cdfa02f1d76e627f",
+      "experiments/src/loopjev/training/performance.py": "ee978079782eefd04bd998a76846b9e2e129499b327ef3c809704a1aac0f5fa4",
+      "experiments/src/loopjev/training/step.py": "e18b3f5364c49f4339d99a1981c9d78cf3362c56d4099316ddf398132fca0f83",
+      "experiments/src/loopjev/training/stopping.py": "282b3778f335e683ccc31f49df9c90702698bff3eac5d7b9e3bead9573986f38",
+      "experiments/src/loopjev/training/tasks.py": "64460f71a1160903db422a8d28f520c6a677ef629fddba6c980f7b643327bc85",
+      "experiments/src/loopjev/training/tracking.py": "41c21861f3fdd9e1e9167f92f5db6bed51e02ed8216cbe2fe4a09605e440e116"
+    },
+    "model_files_sha256": {
+      "models/Ouro-1.4B/model.safetensors": "58872a72616c736595b8b7662079c5b12c5a162ec16eae94f21c348dfa9885af",
+      "models/Ouro-1.4B/configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+      "models/Ouro-1.4B/modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413",
+      "models/Ouro-1.4B/config.json": "ce9cc13da41591b8b4deca053d7dfee06424c0228628ee862ea86d725bc163f3"
+    },
+    "packages": {
+      "torch": "2.8.0",
+      "transformers": "4.55.0",
+      "peft": "0.21.2",
+      "numpy": "2.5.4",
+      "pyarrow": "26.0.0",
+      "tensorboard": "2.21.0"
+    },
+    "tracking": {
+      "backend": "tensorboard",
+      "directory": "tensorboard",
+      "log_every": 25,
+      "train_loss": "current optimizer batch before update; not an interval average",
+      "evaluation_frequency": "end of training only"
+    },
+    "initialization": "independent base model, Yes-minus-No scalar head, zero trainable bias",
+    "loss_reduction": "sum-class Brier; CE+0.1 Brier; mean over complete Records and supervised loops",
+    "gpu": "NVIDIA A800 80GB PCIe",
+    "encoding": {
+      "mode": "online batched tokenizer",
+      "token_cache_key": null
+    }
+  },
+  "completed_updates": 1555,
+  "files_sha256": {
+    "training.pt": "ef93d1fecaedfe71a168d913c96c9e272cd67030145dedaf240e5791ec4f73b1",
+    "head.pt": "43a6040db3c65bbebdb98ce2c1ce3befd5739f430f20e471981a2e769f90be89",
+    "adapter/adapter_config.json": "e5c49d8219915610b19d20d242ad268acb65dc3987146f8c4dd963ee7d7f0427",
+    "adapter/README.md": "eaa1fdc595a6437b3b796e88c5153f1f24374524574ad60d462225666fdfe038",
+    "adapter/adapter_model.safetensors": "a8c6aa72cb5a82784c6ac4512544941669c60b1ba59f1829d2f1fd40975fc774"
+  }
+}

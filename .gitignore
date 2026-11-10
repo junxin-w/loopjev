@@ -1,0 +1,39 @@
+# Local bindings and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+known_hosts
+.vscode/
+
+# Python / environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+environments/
+.pytest_cache/
+
+# Data, models and experiment products
+/data/
+/models/
+/model/
+/repos/**/.git/
+/experiments/outputs/
+/outputs/
+/cache/
+/logs/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.parquet
+*.jsonl
+*.jsonl.gz
+*.tar
+*.tar.gz
+*.zip
+
+# Canonical membership files are restored from their versioned gzip archives.
+/experiments/manifests/main-v1/*.json
